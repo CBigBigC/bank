@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    name: defaultDataSource
+    url: jdbc:mysql://localhost:3306/blue?serverTimezone=UTC
+    username:
+    password:
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    timeout: 1200
+
+mybatis:
+  mapper-locations: classpath:mappers/*xml
+  type-aliases-package: com.watson.bank.mybatis.entity
