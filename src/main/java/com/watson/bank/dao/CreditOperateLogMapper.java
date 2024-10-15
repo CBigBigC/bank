@@ -2,6 +2,7 @@ package com.watson.bank.dao;
 
 import com.watson.bank.domain.CreditOperateLog;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * @author Administrator
@@ -9,6 +10,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-10-15 15:13:53
 * @Entity generator.domain.CreditOperateLog
 */
+@Mapper
 public interface CreditOperateLogMapper extends BaseMapper<CreditOperateLog> {
 
 }
