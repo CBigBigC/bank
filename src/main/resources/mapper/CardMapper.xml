@@ -31,8 +31,8 @@
             <if test="query.id != null">
                 and id = #{query.id}
             </if>
-            <if test="query.card_name != null">
-                and id = #{query.id}
+            <if test="query.cardName != null">
+                and card_name = #{query.cardName}
             </if>
         </where>
         order by id desc
