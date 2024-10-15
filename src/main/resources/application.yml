@@ -5,9 +5,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     name: defaultDataSource
-    url: jdbc:mysql://localhost:3306/blue?serverTimezone=UTC
-    username:
-    password:
+    url: jdbc:mysql://localhost:3306/bank?serverTimezone=UTC
+    username: root
+    password: 237066
   redis:
     database: 0
     host: 127.0.0.1
