@@ -7,7 +7,7 @@
     <resultMap id="BaseResultMap" type="com.watson.bank.domain.CreditOperateLog">
             <id property="id" column="id" jdbcType="BIGINT"/>
             <result property="accountId" column="account_id" jdbcType="BIGINT"/>
-            <result property="operaterId" column="operater_id" jdbcType="BIGINT"/>
+            <result property="operatorId" column="operator_id" jdbcType="BIGINT"/>
             <result property="operateType" column="operate_type" jdbcType="OTHER"/>
             <result property="creditBefore" column="credit_before" jdbcType="DECIMAL"/>
             <result property="creditAfter" column="credit_after" jdbcType="DECIMAL"/>
@@ -18,9 +18,15 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,account_id,operater_id,
-        operate_type,credit_before,credit_after,
-        create_time,update_time,version,
+        id,
+        account_id,
+        operator_id,
+        operate_type,
+        credit_before,
+        credit_after,
+        create_time,
+        update_time,
+        version,
         del_flag
     </sql>
 </mapper>

@@ -30,12 +30,12 @@ public class CreditOperateLog implements Serializable {
     /**
      * 操作人
      */
-    private Long operaterId;
+    private Long operatorId;
 
     /**
      * 操作类型
      */
-    private Object operateType;
+    private String operateType;
 
     /**
      * 调整前额度

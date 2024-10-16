@@ -11,7 +11,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 信用卡controller层
+ * 信用卡信息维护
+ * 增删改查
  */
 @RestController
 @RequestMapping("/card")
@@ -20,6 +21,7 @@ public class CardController {
     @Resource
     private CardService cardService;
 
+    @ApiOperation("新增卡片")
     @RequestMapping("/addCard")
     public Boolean addCard(@RequestBody Card card) {
         return cardService.addCard(card);
