@@ -1,6 +1,8 @@
-package com.watson.bank.service;
+package com.watson.bank.service.credit.impl;
 
 import com.watson.bank.req.CreditOperateReq;
+import com.watson.bank.service.credit.AbstractCreditAdjustService;
+import com.watson.bank.service.credit.CreditService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,10 +16,10 @@ public class CreditServiceImpl implements CreditService {
 
     @Override
     public Boolean adjustCredit(CreditOperateReq creditOperateReq) {
-        AbstractCreditAdjustService matchedAbstractCreditAdjustService = abstractCreditAdjustServiceList.stream()
+        AbstractCreditAdjustService matchedCreditAdjustService = abstractCreditAdjustServiceList.stream()
                 .filter(a -> a.match(creditOperateReq.getOperation()))
                 .findFirst()
                 .orElseThrow();
-        return matchedAbstractCreditAdjustService.adjustCredit(creditOperateReq);
+        return matchedCreditAdjustService.adjustCredit(creditOperateReq);
     }
 }

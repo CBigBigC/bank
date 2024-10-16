@@ -7,7 +7,11 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 额度操作日志表
@@ -15,6 +19,9 @@ import lombok.Data;
  */
 @TableName(value ="credit_operate_log")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CreditOperateLog implements Serializable {
     /**
      * 主键id

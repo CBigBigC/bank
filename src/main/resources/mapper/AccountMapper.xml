@@ -17,8 +17,28 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,user_id,card_id,
-        max_credit,current_credit,create_time,
-        update_time,version,del_flag
+        id,
+        user_id,
+        card_id,
+        max_credit,
+        current_credit,
+        create_time,
+        update_time,
+        version,
+        del_flag
     </sql>
+
+    <update id="updateWithVersion" parameterType="com.watson.bank.domain.Account">
+        update account
+        <set>
+            <if test="account.maxCredit != null">
+                max_credit = #{account.maxCredit},
+            </if>
+            <if test="account.currentCredit != null">
+                current_credit = #{account.currentCredit},
+            </if>
+            version = version + 1
+        </set>
+        WHERE id = #{id} and version =  #{account.version}
+    </update>
 </mapper>

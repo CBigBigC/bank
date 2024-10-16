@@ -1,10 +1,15 @@
-package com.watson.bank.service;
+package com.watson.bank.service.credit;
 
 import com.watson.bank.enums.CreditOperationEnum;
 import com.watson.bank.req.CreditOperateReq;
 
 /**
- * 额度调整service
+ * 额度金额调整抽象类
+ * 定义额度调整的处理模版：
+ * - 参数检查
+ * - 特殊检查
+ * - 诊室调整
+ * 实现类分别需要处理 初始化、上调、下调等金额调整
  */
 public abstract class AbstractCreditAdjustService {
 
@@ -23,7 +28,12 @@ public abstract class AbstractCreditAdjustService {
     /**
      * 一般参数检查
      */
-    protected abstract void commonPreCheck(CreditOperateReq creditOperateReq);
+    private void commonPreCheck(CreditOperateReq creditOperateReq) {
+        // TODO: 这里一般是初步权限检查、参数校验等
+        if (creditOperateReq.getOperatorId() != 0) {
+            throw new RuntimeException();
+        }
+    }
 
     /**
      * 特殊参数检查
@@ -31,7 +41,7 @@ public abstract class AbstractCreditAdjustService {
     protected abstract void specialPreCheck(CreditOperateReq creditOperateReq);
 
     /**
-     * 调整额度逻辑
+     * 额度调整逻辑
      */
     protected abstract void executeAdjustment(CreditOperateReq creditOperateReq);
 }

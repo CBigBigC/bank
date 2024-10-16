@@ -1,7 +1,7 @@
 package com.watson.bank.controller;
 
 import com.watson.bank.domain.Card;
-import com.watson.bank.service.CardService;
+import com.watson.bank.service.card.CardService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,8 +1,7 @@
-package com.watson.bank.service.impl;
+package com.watson.bank.service.card;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.watson.bank.domain.Card;
-import com.watson.bank.service.CardService;
 import com.watson.bank.dao.CardMapper;
 import org.springframework.stereotype.Service;
 

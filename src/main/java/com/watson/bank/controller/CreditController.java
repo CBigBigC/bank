@@ -1,7 +1,7 @@
 package com.watson.bank.controller;
 
 import com.watson.bank.req.CreditOperateReq;
-import com.watson.bank.service.CreditService;
+import com.watson.bank.service.credit.CreditService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
