@@ -17,7 +17,7 @@ public enum CreditOperationEnum {
     INIT("初始化", 0),
     INCREASE("增加额度", 1),
     DECREASE("扣减额度", -1),
-    RESET("重置", -1);
+    RESET("重置", 2);
 
 
     private final String desc;

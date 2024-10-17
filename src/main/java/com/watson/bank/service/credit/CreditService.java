@@ -1,6 +1,6 @@
 package com.watson.bank.service.credit;
 
-import com.watson.bank.req.CreditOperateReq;
+import com.watson.bank.req.CreditOperateDto;
 
 /**
  * 额度操作service定义
@@ -9,6 +9,6 @@ import com.watson.bank.req.CreditOperateReq;
  */
 public interface CreditService {
 
-    Boolean adjustCredit(CreditOperateReq creditOperateReq);
 
+    Boolean adjustCredit(CreditOperateDto creditOperateDto);
 }

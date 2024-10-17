@@ -10,14 +10,8 @@ spring:
     password: 237066
   redis:
     database: 0
-    host: 127.0.0.1
+    host: 47.97.120.52
     port: 6379
-    password: ""
-    pool:
-      max-active: 8
-      max-wait: -1
-      max-idle: 8
-      min-idle: 0
     timeout: 1200
 
 mybatis:

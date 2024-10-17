@@ -10,13 +10,13 @@ import java.math.BigDecimal;
  * 额度调整请求实体类
  */
 @Data
-public class CreditOperateReq {
+public class CreditOperateDto {
 
     /**
      * 账户id
      */
     @NotNull
-    private String accountId;
+    private Long accountId;
 
     /**
      * 操作人

@@ -1,18 +1,22 @@
 package com.watson.bank.controller;
 
-import com.watson.bank.req.CreditOperateReq;
+import com.watson.bank.enums.CreditOperationEnum;
+import com.watson.bank.req.CreditOperateDto;
 import com.watson.bank.service.credit.CreditService;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * 信用卡额度控制
  * 增加额度，扣减额度
  */
+@Slf4j
 @RestController
 @RequestMapping("/credit")
 public class CreditController {
@@ -21,13 +25,39 @@ public class CreditController {
     private CreditService creditService;
 
     /**
-     * 额度调整，支持初始化、增加、扣减、重置等
-     * 详情参考 #CreditOperationEnum
+     * 增加额度
      */
-    @ApiOperation("调整额度")
-    @RequestMapping("/adjust")
-    public Boolean adjustCredit(@RequestBody CreditOperateReq creditOperateReq){
-        return creditService.adjustCredit(creditOperateReq);
+    @ApiOperation("增加额度")
+    @RequestMapping("/increase")
+    public Boolean increaseCredit(@RequestBody CreditOperateDto creditOperateDto){
+        if (!Objects.equals(CreditOperationEnum.INCREASE, creditOperateDto.getOperation())){
+            return false;
+        }
+        return creditService.adjustCredit(creditOperateDto);
+    }
+
+    /**
+     * 扣减额度
+     */
+    @ApiOperation("扣减额度")
+    @RequestMapping("/decrease")
+    public Boolean decreaseCredit(@RequestBody CreditOperateDto creditOperateDto){
+        if (!Objects.equals(CreditOperationEnum.DECREASE, creditOperateDto.getOperation())){
+            return false;
+        }
+        return creditService.adjustCredit(creditOperateDto);
+    }
+
+    /**
+     * 额度重置
+     */
+    @ApiOperation("重置额度")
+    @RequestMapping("/reset")
+    public Boolean resetCredit(@RequestBody CreditOperateDto creditOperateDto){
+        if (!Objects.equals(CreditOperationEnum.RESET, creditOperateDto.getOperation())){
+            return false;
+        }
+        return creditService.adjustCredit(creditOperateDto);
     }
 
 }
