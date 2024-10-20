@@ -9,6 +9,8 @@ import com.watson.bank.req.CreditOperateDto;
  */
 public interface CreditService {
 
-
+    /**
+     * 额度调整统一入口
+     */
     Boolean adjustCredit(CreditOperateDto creditOperateDto);
 }

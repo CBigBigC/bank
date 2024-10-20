@@ -1,6 +1,8 @@
 package com.watson.bank.controller;
 
 import com.watson.bank.enums.CreditOperationEnum;
+import com.watson.bank.exception.BankErrorCodeEnum;
+import com.watson.bank.exception.BusinessException;
 import com.watson.bank.req.CreditOperateDto;
 import com.watson.bank.service.credit.CreditService;
 import io.swagger.annotations.ApiOperation;
@@ -10,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.Objects;
+import java.util.Arrays;
 
 /**
  * 信用卡额度控制
@@ -25,37 +27,14 @@ public class CreditController {
     private CreditService creditService;
 
     /**
-     * 增加额度
+     * 调整额度
      */
-    @ApiOperation("增加额度")
-    @RequestMapping("/increase")
-    public Boolean increaseCredit(@RequestBody CreditOperateDto creditOperateDto){
-        if (!Objects.equals(CreditOperationEnum.INCREASE, creditOperateDto.getOperation())){
-            return false;
-        }
-        return creditService.adjustCredit(creditOperateDto);
-    }
-
-    /**
-     * 扣减额度
-     */
-    @ApiOperation("扣减额度")
-    @RequestMapping("/decrease")
-    public Boolean decreaseCredit(@RequestBody CreditOperateDto creditOperateDto){
-        if (!Objects.equals(CreditOperationEnum.DECREASE, creditOperateDto.getOperation())){
-            return false;
-        }
-        return creditService.adjustCredit(creditOperateDto);
-    }
-
-    /**
-     * 额度重置
-     */
-    @ApiOperation("重置额度")
-    @RequestMapping("/reset")
-    public Boolean resetCredit(@RequestBody CreditOperateDto creditOperateDto){
-        if (!Objects.equals(CreditOperationEnum.RESET, creditOperateDto.getOperation())){
-            return false;
+    @ApiOperation("调整额度")
+    @RequestMapping("/adjust")
+    public Boolean adjustCredit(@RequestBody CreditOperateDto creditOperateDto) {
+        if (Arrays.stream(CreditOperationEnum.values()).anyMatch(a -> a.equals(creditOperateDto.getOperation()))) {
+            log.error("参数非法：{}", creditOperateDto.getOperation());
+            throw new BusinessException(BankErrorCodeEnum.ILLEGAL_PARAM);
         }
         return creditService.adjustCredit(creditOperateDto);
     }

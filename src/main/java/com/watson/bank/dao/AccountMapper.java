@@ -11,6 +11,9 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface AccountMapper extends BaseMapper<Account> {
 
+    /**
+     * 乐观锁更新（version字段校验）
+     */
     int updateWithVersion(@Param("account") Account account);
 }
 
