@@ -7,8 +7,9 @@ import lombok.Getter;
 @Getter
 public enum BankErrorCodeEnum {
 
-    DUPLICATE_REQUEST_ERROR("ERROR-001", "存在进行中的请求"),
-    ILLEGAL_PARAM("ERROR-002", "参数不合法");
+    DUPLICATE_REQUEST_ERROR("DUPLICATE_REQUEST_ERROR", "存在进行中的请求"),
+    ACCOUNT_NOT_EXIST("ACCOUNT_NOT_EXIST", "账户不存在"),
+    ILLEGAL_PARAM("ILLEGAL_PARAM", "参数不合法");
 
     private final String code;
     private final String message;

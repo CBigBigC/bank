@@ -31,6 +31,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Boolean openAccount(AccountOpenReq accountOpenReq) {
         Card card = cardMapper.selectById(accountOpenReq.getCardId());
+        // 开卡，按照卡片默认额度设置实体卡额度
         Account account = Account.builder()
                 .userId(accountOpenReq.getUserId())
                 .cardId(card.getId())

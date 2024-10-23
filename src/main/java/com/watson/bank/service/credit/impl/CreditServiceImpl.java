@@ -38,12 +38,12 @@ public class CreditServiceImpl implements CreditService {
         Account account = accountMapper.selectById(creditOperateDto.getAccountId());
         if (Objects.isNull(account)) {
             log.error("额度调整失败：账户不存在：{}", creditOperateDto);
-            throw new BusinessException("账户不存在", "000");
+            throw new BusinessException(BankErrorCodeEnum.ACCOUNT_NOT_EXIST);
         }
         //计算前后额度
         BigDecimal oldCredit = account.getCurrentCredit();
         BigDecimal newCredit = calculateNewCredit(creditOperateDto, account);
-        log.info("账户：{}，调整前额度：{}调整后额度：{}", creditOperateDto.getAccountId(), oldCredit, newCredit);
+        log.info("账户：{}，调整前额度：{}，调整后额度：{}", creditOperateDto.getAccountId(), oldCredit, newCredit);
         // 更新账户额度
         account.setCurrentCredit(newCredit);
         int updateResult = accountMapper.updateWithVersion(account);
@@ -87,7 +87,11 @@ public class CreditServiceImpl implements CreditService {
                 .creditBefore(oldCredit)
                 .creditAfter(newCredit)
                 .build();
-        creditOperateLogMapper.insert(creditOperateLog);
+        int result = creditOperateLogMapper.insert(creditOperateLog);
+        if (result != 1) {
+            // 非业务核心逻辑代码，打印error日志即可，有监控的话可以打标
+            log.error("额度调整日志插入失败：{}", creditOperateDto);
+        }
     }
 
 }

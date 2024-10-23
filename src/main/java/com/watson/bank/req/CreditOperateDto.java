@@ -33,6 +33,7 @@ public class CreditOperateDto {
     /**
      * 操作基数
      */
+    @NotNull
     private BigDecimal operateAmount;
 
 }
